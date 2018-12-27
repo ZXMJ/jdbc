@@ -4,9 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import org.junit.Test;
-import com.util.JDBCUtil;
+
 import com.model.User;
+import com.util.JDBCC3p0Util;
+import com.util.JDBCUtil;
 
 public class A080Transaction{
 
@@ -46,7 +49,7 @@ public class A080Transaction{
 			//使用jdbc获取数据库连接
 			//con=JDBCUtil.getConnection();
 			//使用c3p0连接池获取数据库连接
-			con=JDBCUtil.getC3p0Con();
+			con=JDBCC3p0Util.getC3p0Con();
 			con.setAutoCommit(false);
 			int isolation = con.getTransactionIsolation();
 			System.out.println(isolation);
@@ -95,7 +98,7 @@ public class A080Transaction{
 			//使用jdbc获取数据库连接
 			//con=JDBCUtil.getConnection();
 			//使用c3p0连接池获取数据库连接
-			con=JDBCUtil.getC3p0Con();
+			con=JDBCC3p0Util.getC3p0Con();
 			con.setAutoCommit(false);
 			sql = "update user set name=? where id=?";
 			ps = con.prepareStatement(sql);
